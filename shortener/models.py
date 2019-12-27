@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-from .utils import code_generator
+from .utils import code_generator, create_shortcode
 
 
 class shortURL(models.Model):
@@ -14,7 +14,7 @@ class shortURL(models.Model):
     
     def save(self, *args, **kwargs):
         if self.shortcode is None or self.shortcode == "":
-            self.shortcode = code_generator()
+            self.shortcode = create_shortcode(self)
         super(shortURL, self).save(*args, **kwargs)
 
     # def my_save(self):
